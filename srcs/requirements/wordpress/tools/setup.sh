@@ -2,14 +2,16 @@
 
 echo "== Installing and setting up Wordpress =="
 
+cd /var/www/html/wordpress
+
 # Download
 wp core download --path=/var/www/html/wordpress --allow-root
 
 # Create config file wp-config.php with the appropriate database parameters (these are env variables in the .env file)
 wp config create --path=/var/www/html/wordpress --allow-root --dbname=$DB_DATABASE --dbhost=$DB_HOST --dbprefix=wp_ --dbuser=$DB_USER_NAME --dbpass=$DB_USER_PASSWORD
 
-# Install wordpress for our website (again, variables are in the .evn file)
-wp core install --path=/var/www/html/wordpress --allow-root --url=$DOMAIN_NAME --title=$WP_SITE_TITLE --admin_user=$WP_ADMIN_NAME --admin_password=$WP_ADMIN_PASSWORD --admin_email=$WP_ADMIN_EMAIL
+# Install wordpress for our website (again, variables are in the .env file)
+wp core install --path=/var/www/html/wordpress --allow-root --url=$DOMAIN_NAME --title="$WP_SITE_TITLE" --admin_user=$WP_ADMIN_NAME --admin_password=$WP_ADMIN_PASSWORD --admin_email=$WP_ADMIN_EMAIL
 
 wp plugin update --path=/var/www/html/wordpress --allow-root --all
 
