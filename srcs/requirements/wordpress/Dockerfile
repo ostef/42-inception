@@ -23,12 +23,6 @@ RUN mkdir -p /var/www/html/wordpress
 
 COPY /tools/setup.sh /tmp/
 
-# The config.yml file is not necessary, we could pass --path=blablah to all
-# the wp commands in the setup.sh script, but I guess any wordpress site will
-# have a config file anyways
-RUN mkdir -p ~/.wp-cli/
-COPY /tools/wp-cli.yml ~/.wp-cli/config.yml
-
 COPY /tools/www.conf /etc/php/7.3/fpm/pool.d/www.conf
 
 EXPOSE 9000
