@@ -6,8 +6,11 @@ services:
       context: ./requirements/nginx
     image: nginx
     container_name: nginx
-    env_file: .env
     restart: always
+    env_file:
+      - .env
+    networks:
+      - inception
     ports:
       - "443:443"
 
@@ -15,14 +18,46 @@ services:
     build:
       context: ./requirements/wordpress
     image: wordpress
-    env_file: .env
     container_name: wordpress
     restart: always
+    env_file:
+      - .env
+    networks:
+      - inception
+    volumes:
+      - /home/soumanso/data/wordpress:/var/www/html/wordpress
 
   mariadb:
     build:
       context: ./requirements/mariadb
     image: mariadb
     container_name: mariadb
-    env_file: .env
     restart: always
+    env_file:
+      - .env
+    networks:
+      - inception
+    volumes:
+      - /home/soumanso/data/mariadb:/var/lib/mariadb
+
+networks:
+  inception:
+    driver: bridge
+    name: inception
+
+volumes:
+  wordpress:
+    driver: local
+    name: wordpress
+    driver_opts:
+      type: none
+      o: bind
+      device: /home/soumanso/data/wordpress
+
+  mariadb:
+    driver: local
+    name: mariadb
+    driver_opts:
+      type: none
+      o: bind
+      device: /home/soumanso/data/mariadb
