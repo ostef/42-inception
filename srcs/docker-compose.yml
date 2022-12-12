@@ -1,13 +1,6 @@
 version: "3.3"
 
 services:
-  mariadb:
-    build:
-      context: ./requirements/mariadb
-    image: mariadb
-    container_name: mariadb
-    env_file: .env
-
   nginx:
     build:
       context: ./requirements/nginx
@@ -23,3 +16,10 @@ services:
     image: wordpress
     env_file: .env
     container_name: wordpress
+
+  mariadb:
+    build:
+      context: ./requirements/mariadb
+    image: mariadb
+    container_name: mariadb
+    env_file: .env
