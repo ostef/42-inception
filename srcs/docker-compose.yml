@@ -13,6 +13,8 @@ services:
       - .env
     networks:
       - inception
+    volumes:
+      - /home/soumanso/data/wordpress:/var/www/html/wordpress
     ports:
       - "443:443"
 
