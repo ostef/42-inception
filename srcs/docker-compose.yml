@@ -34,6 +34,11 @@ services:
   mariadb:
     build:
       context: ./requirements/mariadb
+      args:
+        DB_DATABASE: ${DB_DATABASE}
+        DB_USER_NAME: ${DB_USER_NAME}
+        DB_USER_PASSWORD: ${DB_USER_PASSWORD}
+        DB_ROOT_PASSWORD: ${DB_ROOT_PASSWORD}
     image: mariadb
     container_name: mariadb
     restart: always
