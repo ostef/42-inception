@@ -31,10 +31,9 @@ down:
 	$(COMPOSE) down
 
 clean:
-	$(COMPOSE) down --rmi all
-
-fclean:
 	$(COMPOSE) down --rmi all --volumes
+
+fclean: clean
 	sudo $(RM) -r ~/data/*
 
 prune: down fclean
