@@ -49,7 +49,7 @@ services:
     networks:
       - inception
     volumes:
-      - mariadb:/var/lib/mariadb
+      - mariadb:/var/lib/mysql
 
 networks:
   inception:
