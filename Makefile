@@ -34,7 +34,8 @@ clean:
 	$(COMPOSE) down --rmi all --volumes
 
 fclean: clean
-	sudo $(RM) -r ~/data/*
+	sudo $(RM) -r /home/soumanso/data/mariadb/*
+	sudo $(RM) -r /home/soumanso/data/wordpress/*
 
 prune: down fclean
 	$(DOCKER) system prune -a -f
