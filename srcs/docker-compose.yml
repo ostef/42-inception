@@ -14,7 +14,7 @@ services:
     networks:
       - inception
     volumes:
-      - /home/soumanso/data/wordpress:/var/www/html/wordpress
+      - wordpress:/var/www/html/wordpress
     ports:
       - "443:443"
 
@@ -31,7 +31,7 @@ services:
     networks:
       - inception
     volumes:
-      - /home/soumanso/data/wordpress:/var/www/html/wordpress
+      - wordpress:/var/www/html/wordpress
 
   mariadb:
     build:
@@ -49,7 +49,7 @@ services:
     networks:
       - inception
     volumes:
-      - /home/soumanso/data/mariadb:/var/lib/mariadb
+      - mariadb:/var/lib/mariadb
 
 networks:
   inception:
