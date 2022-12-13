@@ -21,9 +21,9 @@ RUN curl https://raw.githubusercontent.com/wp-cli/builds/gh-pages/phar/wp-cli.ph
 
 RUN mkdir -p /var/www/html/wordpress
 
-COPY /tools/setup.sh /tmp/
+COPY ./tools/setup.sh /tmp/
 
-COPY /tools/www.conf /etc/php/7.3/fpm/pool.d/www.conf
+COPY ./tools/www.conf /etc/php/7.3/fpm/pool.d/www.conf
 
 EXPOSE 9000
 

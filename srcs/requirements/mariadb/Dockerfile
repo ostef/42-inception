@@ -28,7 +28,7 @@ RUN service mysql start \
 	GRANT ALL PRIVILEGES ON $DB_DATABASE.* TO '$DB_USER_NAME'@'%' IDENTIFIED BY '$DB_USER_PASSWORD'; \
 	FLUSH PRIVILEGES;"
 
-COPY /conf/mariadb.conf /etc/mysql/mariadb.conf.d/50-server.cnf
+COPY ./conf/mariadb.conf /etc/mysql/mariadb.conf.d/50-server.cnf
 
 EXPOSE 3306
 
