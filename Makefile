@@ -1,7 +1,16 @@
 DOCKER = sudo docker
 COMPOSE = $(DOCKER) compose -p inception -f srcs/docker-compose.yml
+MARIADB_VOLUME = /home/soumanso/data/mariadb
+WORDPRESS_VOLUME = /home/soumanso/data/wordpress
+DEPENDENCIES = $(MARIADB_VOLUME) $(WORDPRESS_VOLUME)
 
 all: up
+
+$(MARIADB_VOLUME):
+	mkdir -p $(MARIADB_VOLUME)
+
+$(WORDPRESS_VOLUME):
+	mkdir -p $(WORDPRESS_VOLUME)
 
 ps:
 	$(COMPOSE) ps
@@ -15,16 +24,16 @@ volumes:
 networks:
 	$(DOCKER) network ls
 
-start:
+start: $(DEPENDENCIES)
 	$(COMPOSE) start
 
 stop:
 	$(COMPOSE) stop
 
-restart:
+restart: $(DEPENDENCIES)
 	$(COMPOSE) restart
 
-up:
+up: $(DEPENDENCIES)
 	$(COMPOSE) up --detach --build
 
 down:
@@ -34,8 +43,7 @@ clean:
 	$(COMPOSE) down --rmi all --volumes
 
 fclean: clean
-	sudo $(RM) -r /home/soumanso/data/mariadb/*
-	sudo $(RM) -r /home/soumanso/data/wordpress/*
+	sudo $(RM) -r /home/soumanso/data/*
 
 prune: down fclean
 	$(DOCKER) system prune -a -f
